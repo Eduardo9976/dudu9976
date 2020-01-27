@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eleições</title>
+</head>
+<body>
+    <h1>Vamos verificar se o seu voto é obrigatório.</h1>
+    Em que ano você nasceu? <input type="number" name="idade" id="idade">
+    <input type="button" value="Verificar" onclick="votacao()">
+    <div id="res">
+
+    </div>
+    <script>
+        function votacao() {
+            var ano = document.getElementById('idade') //receber a idade de nascimento
+            var anoqueestamos = new Date() //recebe do sistema o ano atual
+            var anoatual = anoqueestamos.getUTCFullYear(Number)//complementa para receber ano atual
+            var nas = Number(ano.value) // Transformar o ano de nascimento em tipo número
+            var calculoidadeeanoatual = anoatual - nas
+            var res = document.getElementById('res')
+            res.innerHTML = `<p>Quem nascem em ${nas} tem ${calculoidadeeanoatual} anos.</p> `
+            if (calculoidadeeanoatual < 16) {
+                res.innerHTML += `<p>Não é necessário votar</p> `
+            }else if(calculoidadeeanoatual < 18 || calculoidadeeanoatual > 65){
+                res.innerHTML += `<p>Votação é Opcional</p>     `
+            }else if(calculoidadeeanoatual => 18) {
+                res.innerHTML += `<p>Votação é Obrigatória!!</p>    `
+            }
+        }
+    </script>   
+</body>
+</html>
